@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "author": "Kirill Mikhailov <playfulfence@gmail.com>",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-c3-devkitm-1",
+      "id": "esp",
+      "top": -305.03,
+      "left": -54.29,
+      "attrs": { "builder": "rust-nostd-esp" }
+    },
+    {
+      "type": "wokwi-ili9341",
+      "id": "lcd1",
+      "top": -348.99,
+      "left": -375.2,
+      "rotate": 270,
+      "attrs": { "flipVertical": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -258.77,
+      "left": -553.08,
+      "attrs": { "color": "yellow", "bounce": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -182.69,
+      "left": -552.83,
+      "rotate": 180,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": -389.75,
+      "left": -331.23,
+      "attrs": { "color": "green" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:7", "lcd1:MOSI", "white", [ "h25.67", "v-128.97", "h-182.01", "v129.83" ] ],
+    [ "esp:2", "lcd1:CS", "green", [ "h-48.18", "v59.43" ] ],
+    [ "esp:10", "lcd1:RST", "yellow", [ "v0" ] ],
+    [ "esp:3", "lcd1:D/C", "purple", [ "h-21.57", "v47.08" ] ],
+    [ "esp:6", "lcd1:SCK", "blue", [ "h39.74", "v-150.63", "h-211.92", "v-1.93" ] ],
+    [ "esp:4", "lcd1:LED", "magenta", [ "v-0.39", "h52.29", "v-184.89", "h-216.27", "v149.17" ] ],
+    [ "esp:GND.1", "lcd1:GND", "black", [ "v-0.77", "h-35.66", "v130" ] ],
+    [ "esp:3V3.1", "lcd1:VCC", "limegreen", [ "h-28.99", "v115.64" ] ],
+    [ "btn1:1.r", "esp:GND.1", "red", [ "v-80.9", "h435.57" ] ],
+    [
+      "btn1:2.r",
+      "esp:0",
+      "cyan",
+      [ "h11.31", "v-83.23", "h170.71", "v-0.21", "h240.01", "v101.48" ]
+    ],
+    [ "btn2:1.r", "btn1:1.l", "red", [ "h-88.94", "v-77.41" ] ],
+    [ "esp:1", "btn2:2.r", "green", [ "h-20.26", "v111.79", "h-496", "v-82" ] ],
+    [ "btn3:1.r", "esp:8", "yellow", [ "v-12.41", "h375.46", "v151.81" ] ],
+    [ "btn2:1.l", "btn3:2.l", "red", [ "h29.72", "v-216.06" ] ]
+  ],
+  "serialMonitor": { "display": "terminal" },
+  "dependencies": {}
+}
