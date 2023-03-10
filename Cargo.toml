@@ -7,37 +7,37 @@ license = "MIT OR Apache-2.0"
 
 
 [target.xtensa-esp32-none-elf.dependencies]
-xtensa-atomic-emulation-trap = "0.2.0"
+xtensa-atomic-emulation-trap = "0.4.0"
 esp32-hal = { package = "esp32-hal", git = "https://github.com/esp-rs/esp-hal.git" }
-xtensa-lx-rt = { version = "0.13.0", features = ["esp32"], optional = true }
-esp-println = { version = "0.3.0", features = ["esp32"] }
-esp-backtrace = { git = "https://github.com/esp-rs/esp-backtrace", version = "0.4.0", features = [
+xtensa-lx-rt = { version = "0.15.0", features = ["esp32"], optional = true }
+esp-println = { version = "0.4.0", features = ["esp32"] }
+esp-backtrace = { git = "https://github.com/esp-rs/esp-backtrace", features = [
     "esp32",
     "panic-handler",
     "print-uart",
 ] }
 
 [target.xtensa-esp32s2-none-elf.dependencies]
-xtensa-atomic-emulation-trap = "0.2.0"
-esp32s2-hal = "0.4.0"
+xtensa-atomic-emulation-trap = "0.4.0"
+esp32s2-hal = "0.7.0"
 esp-backtrace = { git = "https://github.com/esp-rs/esp-backtrace", features = [
     "esp32s2",
     "panic-handler",
     "print-uart",
 ] }
-xtensa-lx-rt = { version = "0.13.0", features = ["esp32s2"], optional = true }
-esp-println = { version = "0.2.1", features = [ "esp32s2" ] }
+xtensa-lx-rt = { version = "0.15.0", features = ["esp32s2"], optional = true }
+esp-println = { version = "0.4.0", features = [ "esp32s2" ] }
 
 [target.xtensa-esp32s3-none-elf.dependencies]
-xtensa-atomic-emulation-trap = "0.2.0"
-esp32s3-hal = "0.4.0"
+xtensa-atomic-emulation-trap = "0.4.0"
+esp32s3-hal = "0.7.0"
 esp-backtrace = { git = "https://github.com/esp-rs/esp-backtrace", features = [
     "esp32s3",
     "panic-handler",
     "print-uart",
 ] }
-xtensa-lx-rt = { version = "0.12.0", features = ["esp32s3"], optional = true }
-esp-println = { version = "0.2.1", features = [ "esp32s3" ] }
+xtensa-lx-rt = { version = "0.15.0", features = ["esp32s3"], optional = true }
+esp-println = { version = "0.4", features = [ "esp32s3" ] }
 
 [target.riscv32imac-unknown-none-elf.dependencies]
 esp32c3-hal = { package = "esp32c3-hal", git = "https://github.com/esp-rs/esp-hal.git" }
@@ -46,8 +46,8 @@ esp-backtrace = { git = "https://github.com/esp-rs/esp-backtrace", features = [
     "panic-handler",
     "print-uart",
 ] }
-riscv-rt = { version = "0.8", optional = true }
-esp-println = { version = "0.2.1", features = [ "esp32c3" ] }
+riscv-rt = { version = "0.11", optional = true }
+esp-println = { version = "0.4", features = [ "esp32c3" ] }
 
 
 [dependencies]
@@ -63,12 +63,12 @@ libm = "0.2.5"
 
 [features]
 default = [ "rt", "eh1" ]
-# rt = ["xtensa-lx-rt"] # for esp32 and esp32s2 chips
-rt = ["riscv-rt"] # for esp32c3 chip
-# eh1 = ["esp32s3"]
+rt = ["xtensa-lx-rt"] # for esp32 and esp32s2/s3 chips
+# rt = [ ] # for esp32c3 chip
+eh1 = ["esp32s3-hal/eh1", "esp32s3"]
 # eh1 = ["esp32-hal/eh1", "esp32"]
 # eh1 = ["esp32s2-hal/eh1", "esp32s2"]
-eh1 = ["esp32c3-hal/eh1", "esp32c3"]
+# eh1 = ["esp32c3-hal/eh1", "esp32c3"]
 
 esp32 = []
 esp32s2 = []

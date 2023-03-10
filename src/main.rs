@@ -52,9 +52,6 @@ use embedded_hal;
 
 use profont::{PROFONT_24_POINT, PROFONT_18_POINT};
 
-use riscv_rt;
-use riscv_rt::entry;
-
 use esp_println::println;
 use esp_backtrace as _;
 
@@ -115,6 +112,9 @@ impl<T: ::embedded_hal::digital::v2::InputPin<Error = core::convert::Infallible>
 fn main() -> ! {
     let peripherals = Peripherals::take();
 
+    #[cfg(any(feature = "esp32"))]
+    let mut system = peripherals.DPORT.split();
+    #[cfg(any(feature = "esp32s2", feature = "esp32s3", feature = "esp32c3"))]
     let mut system = peripherals.SYSTEM.split();
 
     let mut clocks = ClockControl::boot_defaults(system.clock_control).freeze();
