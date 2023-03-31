@@ -1,5 +1,5 @@
 # esp-gallery :crab:
-Wokwi-example with usage of my colegue's, Samuel Benko's, beautiful graphic examples (check [here]https://github.com/sambenko/esp32s3-box-examples), but adapted for famous `ili9341` display)
+Wokwi-example with usage of my colegue's, Samuel Benko's, beautiful graphic examples (check [here](https://github.com/sambenko/esp32s3-box-examples)), but adapted for famous `ili9341` display)
 
 ## Instructions
 
